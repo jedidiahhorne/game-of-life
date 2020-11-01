@@ -1,3 +1,4 @@
+pylint
 numpy
 matplotlib
 config_with_yaml

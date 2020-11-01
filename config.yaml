@@ -1,6 +1,6 @@
 grid:
-  size: 4
-  initial_cells: 13
+  size: 10
+  initial_cells: 5
   random: False
 
 game:
