@@ -1,0 +1,15 @@
+grid:
+  size: 4
+  initial_cells: 13
+  random: False
+
+game:
+  rounds: 100
+  seconds_between_rounds: .5
+  # if cell has fewer than this number of live neighbors, dies
+  min_neighbor_cells: 2
+  # if cell has more than this number of live neighbors, dies
+  max_neighbor_cells: 3
+  # if cell has exactly this number of live neighbors, revives
+  cells_to_revive: 3
+  seconds_between_rounds: .5
