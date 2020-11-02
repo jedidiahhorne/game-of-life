@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from models.board import Board
 
 
+
 def show_grid(cfg):
     """
     Create game and setup pyplot for display.
@@ -28,6 +29,11 @@ def show_grid(cfg):
     cells_to_revive = cfg.getProperty("game.cells_to_revive")
 
     board = Board(grid_size, min_neighbor_cells, max_neighbor_cells, cells_to_revive)
+    init_and_play_board(board, random, initial_cells, rounds, seconds_between_rounds)
+
+def init_and_play_board(board: Board, random: bool, initial_cells: int, rounds: int,
+    seconds_between_rounds: float):
+    """ Run the game. """
     if random:
         random_init(board, initial_cells)
     else:
@@ -78,6 +84,4 @@ def play(board: Board, rounds: int, seconds_between_rounds: int):
         grid.set_data(board.binary_grid)
         plt.pause(seconds_between_rounds)
         plt.draw()
-        # input("Press Enter to continue ...")
         rounds -= 1
-    input("Press Enter to continue...")

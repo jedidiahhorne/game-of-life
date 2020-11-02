@@ -23,6 +23,8 @@ class Board:
             raise Exception("Must have positive values for growth conditions.")
         if min_neighbor_cells > max_neighbor_cells:
             raise Exception("Max cells to live must be greater than min cells.")
+        if cells_to_revive < 0:
+            raise Exception("Cells to revive must be positive.")
         # Not super memory efficient, but store two arrays
         # One with cells for logic, the other with binary values for pyplot display
         self.size = size
@@ -111,16 +113,9 @@ class Board:
 
     def __kill_next_gen(self, col: int, row: int) -> None:
         self.__init_next_gen(col, row)
-        try:
-            self.next_cell_grid[col][row].kill()
-        except IndexError:
-            print(f"Tried to kill cell {col} {row} outside of grid size {self.size}")
-            raise
+        # will not error here because init_next_gen captures index Error
+        self.next_cell_grid[col][row].kill()
 
     def __revive_next_gen(self, col: int, row: int) -> None:
         self.__init_next_gen(col, row)
-        try:
-            self.next_cell_grid[col][row].make_alive()
-        except IndexError:
-            print(f"Tried to revive cell {col} {row} outside of grid size {self.size}")
-            raise
+        self.next_cell_grid[col][row].make_alive()

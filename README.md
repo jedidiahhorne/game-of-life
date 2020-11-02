@@ -9,4 +9,5 @@ pip3 install -r requirements.txt
 sh lint.sh
 # run
 python3 game_of_life.py
+python3 -m pytest
 ```
