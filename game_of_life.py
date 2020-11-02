@@ -9,6 +9,7 @@ import config_with_yaml as config
 
 from views import grid
 
+
 def main():
     """
     Get configs and invoke view.
@@ -18,6 +19,8 @@ def main():
     cells = cfg.getProperty("grid.initial_cells")
     print(f"Initializing grid of size {size} with {cells} cells")
     grid.show_grid(cfg)
+    input("Press Enter to continue...")
+
 
 if __name__ == "__main__":
     main()

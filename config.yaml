@@ -4,7 +4,7 @@ grid:
   random: False
 
 game:
-  rounds: 100
+  rounds: 5
   seconds_between_rounds: .5
   # if cell has fewer than this number of live neighbors, dies
   min_neighbor_cells: 2

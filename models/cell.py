@@ -4,6 +4,7 @@ A live cell can be killed by underpopulation or overpopulation of neighbors (con
 A dead cell can be revived by reproduction of neighbors.
 """
 
+
 class Cell:
     """ A cell """
 
@@ -34,7 +35,7 @@ class Cell:
         # alive cells can be killed
         if self.is_alive():
             if (neighbor_count > board.game_config["max_live"] or
-                neighbor_count < board.game_config["min_live"]):
+                    neighbor_count < board.game_config["min_live"]):
                 print(f"Killing cell {self.col} {self.row} neighbors {neighbor_count}")
                 is_modified = True
                 board.kill(self.col, self.row)
@@ -69,7 +70,7 @@ class Cell:
                 neighbor_y = center_y + row
                 if neighbor_y < 0:
                     neighbor_y = board.size - 1
-                if neighbor_y > board.size -1:
+                if neighbor_y > board.size - 1:
                     neighbor_y = 0
                 # ignore center cell itself
                 if col != 0 or row != 0:

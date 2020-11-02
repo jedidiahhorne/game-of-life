@@ -28,11 +28,18 @@ def show_grid(cfg):
     cells_to_revive = cfg.getProperty("game.cells_to_revive")
 
     board = Board(grid_size, min_neighbor_cells, max_neighbor_cells, cells_to_revive)
+    init_and_play_board(board, random, initial_cells, rounds, seconds_between_rounds)
+
+
+def init_and_play_board(board: Board, random: bool, initial_cells: int, rounds: int,
+                        seconds_between_rounds: float):
+    """ Run the game. """
     if random:
         random_init(board, initial_cells)
     else:
         manual_init(board, initial_cells)
     play(board, rounds, seconds_between_rounds)
+
 
 def manual_init(board: Board, initial_cells: int):
     """
@@ -42,10 +49,10 @@ def manual_init(board: Board, initial_cells: int):
     live_cells = 0
     while live_cells < initial_cells:
         print(f"Cells remaining to input {initial_cells - live_cells}")
-        grid = plt.imshow(board.binary_grid,cmap='binary')
+        grid = plt.imshow(board.binary_grid, cmap='binary')
         click_input = plt.ginput(1, timeout=-1)
-        input_col = int(round(click_input[0][1],0))
-        input_row = int(round(click_input[0][0],0))
+        input_col = int(round(click_input[0][1], 0))
+        input_row = int(round(click_input[0][0], 0))
         if board.is_cell_alive(input_col, input_row):
             board.kill(input_col, input_row)
             live_cells -= 1
@@ -55,6 +62,7 @@ def manual_init(board: Board, initial_cells: int):
         board.set_grid()
         grid.set_data(board.binary_grid)
         plt.draw()
+
 
 def random_init(board: Board, initial_cells: int):
     """ Start board with random cells based on config. """
@@ -70,7 +78,7 @@ def play(board: Board, rounds: int, seconds_between_rounds: int):
     """
     Play game for specified number of generations.
     """
-    grid = plt.imshow(board.binary_grid,cmap='binary')
+    grid = plt.imshow(board.binary_grid, cmap='binary')
     while rounds > 0:
         print(f"Rounds remaining {rounds}")
         board.next_gen()
@@ -78,6 +86,4 @@ def play(board: Board, rounds: int, seconds_between_rounds: int):
         grid.set_data(board.binary_grid)
         plt.pause(seconds_between_rounds)
         plt.draw()
-        # input("Press Enter to continue ...")
         rounds -= 1
-    input("Press Enter to continue...")
