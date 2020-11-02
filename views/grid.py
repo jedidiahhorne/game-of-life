@@ -32,7 +32,7 @@ def show_grid(cfg):
 
 
 def init_and_play_board(board: Board, random: bool, initial_cells: int, rounds: int,
-        seconds_between_rounds: float):
+                        seconds_between_rounds: float):
     """ Run the game. """
     if random:
         random_init(board, initial_cells)
@@ -78,7 +78,7 @@ def play(board: Board, rounds: int, seconds_between_rounds: int):
     """
     Play game for specified number of generations.
     """
-    grid = plt.imshow(board.binary_grid,cmap='binary')
+    grid = plt.imshow(board.binary_grid, cmap='binary')
     while rounds > 0:
         print(f"Rounds remaining {rounds}")
         board.next_gen()

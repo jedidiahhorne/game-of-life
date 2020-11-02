@@ -8,6 +8,7 @@ import pytest
 
 from models.board import Board
 
+
 def test_board_init_errors():
     """ Check that invalid inits raise exceptions """
     with pytest.raises(Exception):
@@ -26,6 +27,7 @@ def test_board_init_errors():
         # negative cells to revive
         Board(1, 2, 3, -3)
 
+
 def test_board_init_make_alive_and_kill():
     """ Check that you can make alive then kill a cell """
     board = Board(4, 2, 3, 3)
@@ -35,6 +37,7 @@ def test_board_init_make_alive_and_kill():
     board.kill(1, 1)
     board.set_grid()
     assert not board.is_cell_alive(1, 1)
+
 
 def test_board_get_cell_ok():
     """ Can get cell either by default or if already exists """
@@ -48,6 +51,7 @@ def test_board_get_cell_ok():
     # cell is assigned and is alive
     assert cell.is_alive()
 
+
 def test_board_revive_cell():
     """ Test that a cell can be revived """
     board = Board(4, 2, 3, 3)
@@ -58,11 +62,13 @@ def test_board_revive_cell():
     board.next_gen()
     assert board.get_cell(2, 2).is_alive()
 
+
 def test_board_get_cell_error():
     """ Cannot get cell outside range of cells """
     board = Board(4, 2, 3, 3)
     with pytest.raises(IndexError):
         board.get_cell(10, 10)
+
 
 def test_next_gen_with_cells():
     """ Check next_gen with set of cells to check. """
@@ -75,6 +81,7 @@ def test_next_gen_with_cells():
     # single cell should die
     assert not board.get_cell(1, 1).is_alive()
 
+
 def test_next_gen_with_bad_cell_to_check():
     """ Check next_gen with set of cells to check. """
     board = Board(4, 2, 3, 3)
@@ -85,6 +92,7 @@ def test_next_gen_with_bad_cell_to_check():
     with pytest.raises(IndexError):
         board.next_gen()
 
+
 def test_next_gen_without_cells():
     """ Check next_gen checking all cells. """
     board = Board(4, 2, 3, 3)
@@ -93,6 +101,7 @@ def test_next_gen_without_cells():
     board.next_gen()
     # single cell should die
     assert not board.get_cell(1, 1).is_alive()
+
 
 def test_various_index_errors():
     """ Some things that won'f work with input outside grid. """
